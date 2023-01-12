@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     /**
-     * Updates the patient in the storage with the gender and the email     * 
+     * Updates the patient in the storage with the gender and the email     *
      */
     async updatePatient() {
       this.patient.gender = this.gender;
@@ -62,9 +62,9 @@ export default {
             <br /><br />
             <b>2. Leistungen und Pflichten von der ANQ</b><br />
             - Bereitstellung eines kostenfreien Accounts auf MIDATA mit welchem
-            der Patient auf seine Daten zugreifen kann. - Support über die ANQ
-            bezüglich des Accounts. - Zugriffssicherheit gewährleisten nach
-            bestem Wissen und Gewissen. - Löschung auf Anfrage des Accounts
+            der Patient auf seine Daten zugreifen kann. <br />- Support über die ANQ
+            bezüglich des Accounts. <br />- Zugriffssicherheit gewährleisten nach
+            bestem Wissen und Gewissen. <br />- Löschung auf Anfrage des Accounts
             <br /><br />
             <b>3. Applikation</b><br />
             Zentrales Hilfsmittel ist eine Webapplikation, mit welcher die

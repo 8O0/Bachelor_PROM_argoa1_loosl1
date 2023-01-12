@@ -56,7 +56,4 @@ npx quasar dev
 #### Redirect URL for Midata
 The MIDATA service needs to know the URL where to redirect the user after successful login.
 This can be configured in **quasar.conf.js** with the **VUE_FHIR_REDIRECT_URL** variable (second entry).
-Make sure it also includes "/#/" and it is registered as **redirect URI** in the MIDATA app declaration.# Bachelor_PROM_argoa1_loosl1
-# Bachelor_PROM_argoa1_loosl1
-# Bachelor_PROM_argoa1_loosl1
-# Bachelor_PROM_argoa1_loosl1
+Make sure it also includes "/#/" and it is registered as **redirect URI** in the MIDATA app declaration.
