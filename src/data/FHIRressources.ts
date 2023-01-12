@@ -1,18 +1,18 @@
 export const PROM =
 {
     'resourceType': 'QuestionnaireResponse',
-    'id': '637288805f83d970f5ba8c53', 
-    'encounter': {'reference': 'Encounter/id3'}, 
+    'id': '637288805f83d970f5ba8c53',
+    'encounter': {'reference': 'Encounter/id3'},
 
-    'identifier': { 
+    'identifier': {
         'value': '1'
     },
     'status': 'in-progress',
     'subject': {
-        'reference': 'Patient/ID', 
+        'reference': 'Patient/ID',
         'display': 'Lukas Dev'
     },
-    'item': [ 
+    'item': [
         {
             'linkId': '1',
             'definition': 'Global01',
@@ -162,16 +162,16 @@ export const PATIENT = {
     ],
     'gender': '',
     'address': [
-        {
-            'country': 'Switzerland'
-        }
+      {
+        'country': 'Switzerland',
+        'postalCode': '3000'
+      }
     ],
     'birthDate': 'YYYY',
     'telecom': [
         {
           'system': 'email',
-          'value': '',
-
+          'value': 'lukas.loosli@protonmail.com',
         }
       ],
 }
