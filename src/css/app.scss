@@ -1,0 +1,175 @@
+// app global css in SCSS form
+.midata-fade {
+  background-image: linear-gradient(to bottom right, #087add, #32c6b6);
+}
+
+table{
+  border: 1 ;
+}
+
+.input_form{
+  width: 35px;
+  height: 35px;
+}
+.question{
+  font-size: 16px;
+}
+
+.col_form{
+  text-align:center;
+  vertical-align:top;
+  background-color: rgb(241, 241, 241);
+  font-family:Arial, sans-serif;
+  font-size:14px;
+  font-weight:normal;
+  
+}
+.number_rows{
+  text-align:center;
+  vertical-align: text-top;
+  border: 0px solid;
+  max-width: 10px;
+  overflow: hidden;
+  padding: 0px;
+  margin: 0px;
+  
+  
+  background-color: rgb(255, 255, 255);;
+  
+font-family:Arial, sans-serif;
+  font-size:20px;
+  font-weight:bolder;
+  
+  }
+
+  .col_pat{
+    text-align:center;
+    vertical-align:top;
+    background-color: rgb(241, 241, 241);
+    width:7%;
+    border-spacing: 50px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    font-weight:normal;
+    overflow:hidden;
+    padding:20px 20px;
+    word-break:normal;
+    border-spacing: 50px 0;
+    }
+  .frage{
+    background-color: rgb(255, 255, 255);
+    width:700px;
+  }
+
+	.scale{
+    text-align:center;
+	  background-color: rgb(255, 255, 255);
+		border-collapse: collapse;
+		border-bottom: 5px solid rgb(0, 0, 0);
+		vertical-align:bottom;
+    overflow:hidden;
+		font-weight:bolder;
+    font-size:12px;
+    min-width: max-content;
+
+	}
+	.separators{
+		background-color: rgb(255, 255, 255);
+		border-bottom: 2px solid rgb(214, 214, 214);
+		height: 10px;
+	}
+
+	-------------------------------------------------------------
+
+
+
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: #4A4A4A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;  
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  width: 350px;
+  position: relative;
+}
+form .form-field::before {
+  font-size: 20px;
+  position: absolute;
+  left: 15px;
+  top: 17px;
+  color: #888888;
+  content: " ";
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+form .form-field:nth-child(1)::before {
+  /*background-image: url(./img/user-icon.png);*/
+  width: 20px;
+  height: 20px;
+  top: 15px;
+}
+form .form-field:nth-child(2)::before {
+  /*background-image: url(./img/lock-icon.png);*/
+  width: 16px;
+  height: 16px;
+}
+form .form-field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
+form input {
+  font-family: inherit;
+  width: 100%;
+  outline: none;
+  background-color: #fff;
+  border-radius: 4px;
+  border: none;
+  display: block;
+  padding: 0.9rem 0.7rem;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 17px;
+  color: #4A4A4A;
+  text-indent: 40px;
+}
+form .btn {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0.9rem 2.5rem;
+  text-align: center;
+  background-color: #2c3bc5;
+  color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  font-size: 17px;
+}
+.logo{
+	height: 100%;
+	width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+
