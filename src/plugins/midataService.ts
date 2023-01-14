@@ -86,27 +86,27 @@ export default class MidataService {
     })
   }
 
-    /**
-   * Creates a Patient resource on the fhir server
-   * @returns a promise:
-   *              - if successfull -> response with the created resource as JSON
-   *              - if not successfull -> error message
-   */
-     public async createPatientMidata(
-    ): Promise<Patient> {
-      const currentPatient = storage.getPatient()
-       return await new Promise((resolve, reject) => {
-        this.jsOnFhir
-          .create(currentPatient)
-          .then((result) => {
-            result ? resolve(result as Patient) : reject('Couldn\'t create Patient! Check the logs!')
-          })
-          .catch((error) => reject(error))
-      })
-    }
+  /**
+ * Creates a Patient resource on the fhir server
+ * @returns a promise:
+ *              - if successfull -> response with the created resource as JSON
+ *              - if not successfull -> error message
+ */
+  public async createPatientMidata(): Promise<Patient> {
+    const currentPatient = storage.getPatient()
+    return await new Promise((resolve, reject) => {
+      this.jsOnFhir
+        .create(currentPatient)
+        .then((result) => {
+          result ? resolve(result as Patient) : reject('Couldn\'t create Patient! Check the logs!')
+        })
+        .catch((error) => reject(error))
+    })
+  }
 
   /**
    * Gets the patient resource from the fhir endpoint.
+   * @param name the name of the patient for the search
    * @returns patient resource as JSON
    */
   public getPatient(name: string): Promise<Patient> {
@@ -130,7 +130,7 @@ export default class MidataService {
    * Gets the patient resource from the fhir endpoint.
    * @returns patient resource as JSON
    */
-  public getPatients(): Promise<Patient[]> {
+/*   public getPatients(): Promise<Patient[]> {
     return new Promise((resolve, reject) => {
       this.jsOnFhir
         .search('Patient')
@@ -144,15 +144,18 @@ export default class MidataService {
         })
         .catch((error) => reject(error))
     })
-  }
+  } */
 
-
+/**
+ * Gets the active episode of care with the FHIR ID of the patient
+ * @param patientFhirID the ID string of the patient resource
+ * @returns episode of care resource as a JSON
+ */
   public getEpisodeOfCare(patientFhirID: string): Promise<EpisodeOfCare> {
     return new Promise((resolve, reject) => {
       this.jsOnFhir
         .search(
           'EpisodeOfCare',
-          //`patient=365b187ee9ed6e1b63a90ef1&status=active` // Brönniman for debugging
           `patient=${patientFhirID}&status=active`
         )
         .then((result) => {
@@ -170,13 +173,12 @@ export default class MidataService {
 
   /**
    * Creates a episodeOfCare resource on the fhir server
+   * @param episodeOfCare The resource as EpisodeOfCare
    * @returns a promise:
    *              - if successfull -> response with the created resource as JSON
    *              - if not successfull -> error message
    */
-  public createEpisodeOfCareMidata(
-    episodeOfCare: EpisodeOfCare
-  ): Promise<EpisodeOfCare> {
+  public createEpisodeOfCareMidata(episodeOfCare: EpisodeOfCare): Promise<EpisodeOfCare> {
     return new Promise((resolve, reject) => {
       this.jsOnFhir
         .create(episodeOfCare)
@@ -188,14 +190,13 @@ export default class MidataService {
   }
 
   /**
-   * Creates a episodeOfCare resource on the fhir server
+   * Updates the existing episodeOfCare resource on the fhir server
+   * @param episodeOfCare the resource as EpisodeOfCare
    * @returns a promise:
    *              - if successfull -> response with the created resource as JSON
    *              - if not successfull -> error message
    */
-  public updateEpisodeOfCareMidata(
-    episodeOfCare: EpisodeOfCare
-  ): Promise<EpisodeOfCare> {
+  public updateEpisodeOfCareMidata(episodeOfCare: EpisodeOfCare): Promise<EpisodeOfCare> {
     return new Promise((resolve, reject) => {
       this.jsOnFhir
         .update(episodeOfCare)
@@ -207,14 +208,13 @@ export default class MidataService {
   }
 
   /**
- * Creates a episodeOfCare resource on the fhir server
+ * Creates an encounter resource on the fhir server
+ * @param encounter The resource as Encounter
  * @returns a promise:
  *              - if successfull -> response with the created resource as JSON
  *              - if not successfull -> error message
  */
-  public createEncounterMidata(
-    encounter: Encounter
-  ): Promise<Encounter> {
+  public createEncounterMidata(encounter: Encounter): Promise<Encounter> {
     return new Promise((resolve, reject) => {
       this.jsOnFhir
         .create(encounter)
@@ -226,7 +226,8 @@ export default class MidataService {
   }
 
   /**
-* Creates a episodeOfCare resource on the fhir server
+* Creates a questionnaire Response resource on the fhir server
+* @param questionnaireResponse the resource as QuestionnaireResponse
 * @returns a promise:
 *              - if successfull -> response with the created resource as JSON
 *              - if not successfull -> error message
@@ -244,18 +245,30 @@ export default class MidataService {
         .catch((error) => reject(error))
     })
   }
+
+  /**
+   * Creates a unique FHIR ID
+   * @param length the length of the generated hash as number
+   * @returns a string of the hash
+   */
   public makeid(length: number) {
 
     let result = '0'
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXZY0123456789'
     const charactersLength = characters.length
-    while ( result.length <length) {
+    while (result.length < length) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength))
 
     }
     return result
   }
 
+  /**
+   * Gets the organization from MIDATA
+   * !not used as it isnt possible to link a Practicioner to a Organization!
+   * @param id the id of the organization to get
+   * @returns the organization resource
+   */
   public getOrganization(id: number): Promise<Organization> {
     return new Promise((resolve, reject) => {
       this.jsOnFhir
@@ -288,16 +301,6 @@ export default class MidataService {
         })
         .catch((error) => reject(error))
     })
-  }
-
-  // getQuestionnaire() {
-  //   // return prom
-  // }
-
-  setQuestionnaireData(answers: any[]) {
-    console.log(`Antworten: ${String(answers)}`)
-
-    //throw new Error('Method not implemented.')
   }
 
   /**
@@ -337,16 +340,19 @@ export default class MidataService {
     })
   }
 
+/**
+ * Sets the FHIR ID of the case
+ * @param caseID the FHIR ID of the case
+ */
   public setCaseID(caseID: string) {
     this.currentCaseID = caseID
   }
 
+  /**
+   * returns the FHIR ID of the case 
+   * @returns FHIR ID of the case as string
+   */
   public getCaseID() {
     return this.currentCaseID
   }
-
-  public getPatientFHIRID() {
-    return
-  }
-
 }

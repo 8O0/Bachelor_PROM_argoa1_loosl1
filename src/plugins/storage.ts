@@ -54,6 +54,10 @@ export default class Storage {
     }
   }
 
+  /**
+   * Sets the currentPatient into the storage
+   * @param currentPatient the patient object 
+   */
   public setCurrentPatient(currentPatient: PatientObject) {
     if (currentPatient.patFHIRID) {
       this.patientResource.id = currentPatient.patFHIRID;
@@ -70,6 +74,12 @@ export default class Storage {
     console.log(`Patientresource: ${JSON.stringify(this.patientResource)}`);
   }
 
+  /**
+   * Updates the patient object
+   * @param email the email, must be unique
+   * @param gender the gender of the patient
+   * @param id the 
+   */
   public updateCurrentPatient(email: string, gender: string, id: string) {
     this.patientResource.gender = gender as PatientAdministrativeGender;
     this.patientResource.telecom[0].value = email;
