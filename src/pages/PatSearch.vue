@@ -153,8 +153,8 @@ export default {
   },
   updated() {
     const namePracticioner = [
-      this.$storage.getPractitioner()?.name[0]?.family,
       this.$storage.getPractitioner()?.name[0]?.given[0],
+      this.$storage.getPractitioner()?.name[0]?.family,
     ].join(' ');
     localStorage.setItem('namePracticioner', JSON.stringify(namePracticioner));
     this.namePracticioner = namePracticioner;
@@ -176,7 +176,7 @@ export default {
 <template>
   <div class="wrapper">
     <div>
-      <H2>Patient Search</H2>
+      <H2>Patienten Erfassen</H2>
       <div class="q-pa-md" style="max-width: 700px">
         <table width="100%" border="0">
           <tr>
@@ -287,7 +287,7 @@ export default {
           class="item-wrapper"
         >
           <q-item-section>
-            <q-item-label overline> Patient </q-item-label>
+            <q-item-label overline> Name </q-item-label>
             <q-item-label>
               {{ item.firstName }} {{ item.familyName }}
             </q-item-label>
@@ -300,6 +300,11 @@ export default {
             <q-item-label overline> Fall ID </q-item-label>
             <q-item-label>
               {{ item.caseID }}
+            </q-item-label>
+
+            <q-item-label overline> Geburtstagsdatum </q-item-label>
+            <q-item-label>
+              {{ item.birthdate }}
             </q-item-label>
           </q-item-section>
 
